@@ -4,7 +4,8 @@ describe ToyRoboSimulator::Robo do
   before do
     @robo = ToyRoboSimulator::Robo.new
   end
-  describe "#initialize" do
+
+  describe "#place" do
     context "coordinates out of range" do
       let(:x)           { 6 }
       let(:y)           { 6 }
@@ -100,11 +101,83 @@ describe ToyRoboSimulator::Robo do
   end
 
   describe "#left" do
-
+    context 'called before #place' do
+      before do
+        @robo.left
+      end
+      it 'has error' do
+        expect(@robo.errors.size).to be > 0
+      end
+      it 'no attr is assigned' do
+        expect(@robo.x).to           be_falsey
+        expect(@robo.y).to           be_falsey
+        expect(@robo.orientation).to be_falsey
+      end
+    end
+    context 'called after #place and turns the Robo from' do
+      let(:x)           { 2 }
+      let(:y)           { 2 }
+      it 'north => west' do
+        @robo.place(x, y, :north) 
+        @robo.left
+        expect(@robo.orientation).to eq :west
+      end
+      it 'west => south' do
+        @robo.place(x, y, :west) 
+        @robo.left
+        expect(@robo.orientation).to eq :south
+      end
+      it 'south => east' do
+        @robo.place(x, y, :south) 
+        @robo.left
+        expect(@robo.orientation).to eq :east
+      end
+      it 'east => north' do
+        @robo.place(x, y, :east) 
+        @robo.left
+        expect(@robo.orientation).to eq :north
+      end
+    end
   end
 
   describe "#right" do
-
+    context 'called before #place' do
+      before do
+        @robo.right
+      end
+      it 'has error' do
+        expect(@robo.errors.size).to be > 0
+      end
+      it 'no attr is assigned' do
+        expect(@robo.x).to           be_falsey
+        expect(@robo.y).to           be_falsey
+        expect(@robo.orientation).to be_falsey
+      end
+    end
+    context 'called after #place and turns the Robo from' do
+      let(:x)           { 2 }
+      let(:y)           { 2 }
+      it 'north => east' do
+        @robo.place(x, y, :north) 
+        @robo.right
+        expect(@robo.orientation).to eq :east
+      end
+      it 'east => south' do
+        @robo.place(x, y, :east) 
+        @robo.right
+        expect(@robo.orientation).to eq :south
+      end
+      it 'south => west' do
+        @robo.place(x, y, :south) 
+        @robo.right
+        expect(@robo.orientation).to eq :west
+      end
+      it 'west => north' do
+        @robo.place(x, y, :west) 
+        @robo.right
+        expect(@robo.orientation).to eq :north
+      end
+    end
   end
 
   describe "#report" do

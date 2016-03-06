@@ -1,3 +1,5 @@
+Orientations = %i(north west south east) 
+
 module ToyRoboSimulator
   class Robo
     attr_accessor :x, :y, :orientation, :errors
@@ -44,6 +46,28 @@ module ToyRoboSimulator
       end
     end
 
+    def left
+      @errors = []
+      @errors << "The Robo is not placed yet. Use PLACE command first." unless placed?
+      if @errors.any?
+        @errors.each {|error| puts error }
+      else
+        @orientation = Orientations[Orientations.index(@orientation) + 1] || :north
+        puts "Robo is now at coordinates (#{@x},#{@y}), facing #{@orientation.to_s.upcase}"
+      end
+    end
+
+    def right
+      @errors = []
+      @errors << "The Robo is not placed yet. Use PLACE command first." unless placed?
+      if @errors.any?
+        @errors.each {|error| puts error }
+      else
+        @orientation = Orientations[Orientations.index(@orientation) - 1]
+        puts "Robo is now at coordinates (#{@x},#{@y}), facing #{@orientation.to_s.upcase}"
+      end
+    end
+
     private
 
       def placed?
@@ -85,7 +109,7 @@ module ToyRoboSimulator
       end
 
       def validates_orientation(orientation)
-        @errors << "orientation should be either north, south, east, or west" unless %i(north south east west).include? orientation
+        @errors << "orientation should be either north, south, east, or west" unless Orientations.include? orientation
       end
   end
 end
