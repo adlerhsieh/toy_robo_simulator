@@ -68,6 +68,10 @@ module ToyRoboSimulator
       end
     end
 
+    def report
+      puts "Robo is now at coordinates (#{@x},#{@y}), facing #{@orientation.to_s.upcase}"
+    end
+
     private
 
       def placed?
