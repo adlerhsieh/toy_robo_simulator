@@ -1,5 +1,3 @@
-Orientations = %i(north west south east)
-
 module ToyRoboSimulator
   class Robo
     attr_accessor :x, :y, :orientation
@@ -12,6 +10,8 @@ module ToyRoboSimulator
     end
 
     def place(x, y, orientation)
+      x = x.to_i
+      y = y.to_i
       return unless coordinates_valid?(x, y) && orientation_valid?(orientation.downcase.to_sym)
       @x, @y = x, y
       @orientation = orientation.downcase.to_sym
