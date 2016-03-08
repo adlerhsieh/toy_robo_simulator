@@ -18,9 +18,6 @@ describe ToyRoboSimulator::Robo do
         expect(@robo.y).to           be_falsey
         expect(@robo.orientation).to be_falsey
       end
-      it 'has error' do
-        expect(@robo.errors.size).to be > 0
-      end
     end
     context "successfully" do
       let(:x)           { 5 }
@@ -42,9 +39,6 @@ describe ToyRoboSimulator::Robo do
       before do
         @robo.move
       end
-      it 'has error' do
-        expect(@robo.errors.size).to be > 0
-      end
       it 'no attr is assigned' do
         expect(@robo.x).to           be_falsey
         expect(@robo.y).to           be_falsey
@@ -59,9 +53,6 @@ describe ToyRoboSimulator::Robo do
         before do
           @robo.place(x, y, orientation) 
           @robo.move
-        end
-        it 'has error' do
-          expect(@robo.errors.size).to be > 0
         end
         it 'does not move' do
           expect(@robo.x).to eq(x)
@@ -105,9 +96,6 @@ describe ToyRoboSimulator::Robo do
       before do
         @robo.left
       end
-      it 'has error' do
-        expect(@robo.errors.size).to be > 0
-      end
       it 'no attr is assigned' do
         expect(@robo.x).to           be_falsey
         expect(@robo.y).to           be_falsey
@@ -144,9 +132,6 @@ describe ToyRoboSimulator::Robo do
     context 'called before #place' do
       before do
         @robo.right
-      end
-      it 'has error' do
-        expect(@robo.errors.size).to be > 0
       end
       it 'no attr is assigned' do
         expect(@robo.x).to           be_falsey
