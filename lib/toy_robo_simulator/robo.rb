@@ -1,4 +1,4 @@
-Orientations = %i(north west south east) 
+Orientations = %i(north west south east)
 
 module ToyRoboSimulator
   class Robo
@@ -51,55 +51,55 @@ module ToyRoboSimulator
 
     private
 
-      def placed?
-        if @x && @y && @orientation
-          true
-        else
-          puts "The Robo is not placed yet. Use PLACE command first." 
-          false
-        end
+    def placed?
+      if @x && @y && @orientation
+        true
+      else
+        puts 'The Robo is not placed yet. Use PLACE command first.'
+        false
       end
+    end
 
-      def move_valid?
-        if (@orientation == :north && @y == @y_max) ||
-           (@orientation == :east  && @x == @x_min) ||
-           (@orientation == :south && @y == @y_min) ||
-           (@orientation == :west  && @x == @x_min)
-          puts "The Robo is at edge. No further move is allowed."     
-          false
-        else
-          true
-        end
-      end
-
-      def coordinates_valid?(x, y)
-        return unless is_int?(x)   && is_int?(y)
-        return unless in_range?(x) && in_range?(y)
+    def move_valid?
+      if (@orientation == :north && @y == @y_max) ||
+         (@orientation == :east  && @x == @x_min) ||
+         (@orientation == :south && @y == @y_min) ||
+         (@orientation == :west  && @x == @x_min)
+        puts 'The Robo is at edge. No further move is allowed.'
+        false
+      else
         true
       end
+    end
 
-      def is_int?(coordinate)
-        unless coordinate.to_s === coordinate.to_i.to_s
-          puts "Coordinate must be an Integer"
-          return false
-        end
-        true
-      end
+    def coordinates_valid?(x, y)
+      return unless int?(x)      && int?(y)
+      return unless in_range?(x) && in_range?(y)
+      true
+    end
 
-      def in_range?(coordinate)
-        unless coordinate >= 0 && coordinate <= 5
-          puts "Coordinate must be between 0 and 5" 
-          return false
-        end
-        true
+    def int?(coordinate)
+      unless coordinate.to_s === coordinate.to_i.to_s
+        puts 'Coordinate must be an Integer'
+        return false
       end
+      true
+    end
 
-      def orientation_valid?(orientation)
-        unless Orientations.include? orientation
-          puts "orientation should be either north, south, east, or west" 
-          return false
-        end
-        true
+    def in_range?(coordinate)
+      unless coordinate >= 0 && coordinate <= 5
+        puts 'Coordinate must be between 0 and 5'
+        return false
       end
+      true
+    end
+
+    def orientation_valid?(orientation)
+      unless Orientations.include? orientation
+        puts 'orientation should be either NORTH, SOUTH, EAST, or WEST'
+        return false
+      end
+      true
+    end
   end
 end
