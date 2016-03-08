@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe ToyRoboSimulator::Robo do
+  subject { ToyRoboSimulator::Robo.new }
   before do
-    @robo = ToyRoboSimulator::Robo.new
+    allow(subject).to receive(:puts)
+    allow(subject).to receive(:print)
   end
 
   describe '#place' do
@@ -11,12 +13,12 @@ describe ToyRoboSimulator::Robo do
       let(:y)           { 6 }
       let(:orientation) { :north }
       before do
-        @robo.place(x, y, orientation)
+        subject.place(x, y, orientation)
       end
       it 'no attr is assigned' do
-        expect(@robo.x).to be_falsey
-        expect(@robo.y).to be_falsey
-        expect(@robo.orientation).to be_falsey
+        expect(subject.x).to be_falsey
+        expect(subject.y).to be_falsey
+        expect(subject.orientation).to be_falsey
       end
     end
     context 'successfully' do
@@ -24,12 +26,12 @@ describe ToyRoboSimulator::Robo do
       let(:y)           { 5 }
       let(:orientation) { :north }
       before do
-        @robo.place(x, y, orientation)
+        subject.place(x, y, orientation)
       end
       it 'assigns attrs' do
-        expect(@robo.x).to eq x
-        expect(@robo.y).to eq y
-        expect(@robo.orientation).to eq orientation
+        expect(subject.x).to eq x
+        expect(subject.y).to eq y
+        expect(subject.orientation).to eq orientation
       end
     end
   end
@@ -37,12 +39,12 @@ describe ToyRoboSimulator::Robo do
   describe '#move' do
     context 'called before #place' do
       before do
-        @robo.move
+        subject.move
       end
       it 'no attr is assigned' do
-        expect(@robo.x).to be_falsey
-        expect(@robo.y).to be_falsey
-        expect(@robo.orientation).to be_falsey
+        expect(subject.x).to be_falsey
+        expect(subject.y).to be_falsey
+        expect(subject.orientation).to be_falsey
       end
     end
     context 'called after #place' do
@@ -51,13 +53,13 @@ describe ToyRoboSimulator::Robo do
         let(:y)           { 5 }
         let(:orientation) { :north }
         before do
-          @robo.place(x, y, orientation)
-          @robo.move
+          subject.place(x, y, orientation)
+          subject.move
         end
         it 'does not move' do
-          expect(@robo.x).to eq(x)
-          expect(@robo.y).to eq(y)
-          expect(@robo.orientation).to eq orientation
+          expect(subject.x).to eq(x)
+          expect(subject.y).to eq(y)
+          expect(subject.orientation).to eq orientation
         end
       end
       context 'within range' do
@@ -66,25 +68,25 @@ describe ToyRoboSimulator::Robo do
         context 'and the robo facing north' do
           let(:orientation) { :north }
           before do
-            @robo.place(x, y, orientation)
-            @robo.move
+            subject.place(x, y, orientation)
+            subject.move
           end
           it 'moves robo 1 space towards north' do
-            expect(@robo.x).to eq(x)
-            expect(@robo.y).to eq(y + 1)
-            expect(@robo.orientation).to eq orientation
+            expect(subject.x).to eq(x)
+            expect(subject.y).to eq(y + 1)
+            expect(subject.orientation).to eq orientation
           end
         end
         context 'and the robo facing east' do
           let(:orientation) { :east }
           before do
-            @robo.place(x, y, :east)
-            @robo.move
+            subject.place(x, y, :east)
+            subject.move
           end
           it 'moves robo 1 space towards east' do
-            expect(@robo.x).to eq(x + 1)
-            expect(@robo.y).to eq(y)
-            expect(@robo.orientation).to eq orientation
+            expect(subject.x).to eq(x + 1)
+            expect(subject.y).to eq(y)
+            expect(subject.orientation).to eq orientation
           end
         end
       end
@@ -94,36 +96,36 @@ describe ToyRoboSimulator::Robo do
   describe '#left' do
     context 'called before #place' do
       before do
-        @robo.left
+        subject.left
       end
       it 'no attr is assigned' do
-        expect(@robo.x).to be_falsey
-        expect(@robo.y).to be_falsey
-        expect(@robo.orientation).to be_falsey
+        expect(subject.x).to be_falsey
+        expect(subject.y).to be_falsey
+        expect(subject.orientation).to be_falsey
       end
     end
     context 'called after #place and turns the Robo from' do
       let(:x)           { 2 }
       let(:y)           { 2 }
       it 'north => west' do
-        @robo.place(x, y, :north)
-        @robo.left
-        expect(@robo.orientation).to eq :west
+        subject.place(x, y, :north)
+        subject.left
+        expect(subject.orientation).to eq :west
       end
       it 'west => south' do
-        @robo.place(x, y, :west)
-        @robo.left
-        expect(@robo.orientation).to eq :south
+        subject.place(x, y, :west)
+        subject.left
+        expect(subject.orientation).to eq :south
       end
       it 'south => east' do
-        @robo.place(x, y, :south)
-        @robo.left
-        expect(@robo.orientation).to eq :east
+        subject.place(x, y, :south)
+        subject.left
+        expect(subject.orientation).to eq :east
       end
       it 'east => north' do
-        @robo.place(x, y, :east)
-        @robo.left
-        expect(@robo.orientation).to eq :north
+        subject.place(x, y, :east)
+        subject.left
+        expect(subject.orientation).to eq :north
       end
     end
   end
@@ -131,43 +133,43 @@ describe ToyRoboSimulator::Robo do
   describe '#right' do
     context 'called before #place' do
       before do
-        @robo.right
+        subject.right
       end
       it 'no attr is assigned' do
-        expect(@robo.x).to be_falsey
-        expect(@robo.y).to be_falsey
-        expect(@robo.orientation).to be_falsey
+        expect(subject.x).to be_falsey
+        expect(subject.y).to be_falsey
+        expect(subject.orientation).to be_falsey
       end
     end
     context 'called after #place and turns the Robo from' do
       let(:x)           { 2 }
       let(:y)           { 2 }
       it 'north => east' do
-        @robo.place(x, y, :north)
-        @robo.right
-        expect(@robo.orientation).to eq :east
+        subject.place(x, y, :north)
+        subject.right
+        expect(subject.orientation).to eq :east
       end
       it 'east => south' do
-        @robo.place(x, y, :east)
-        @robo.right
-        expect(@robo.orientation).to eq :south
+        subject.place(x, y, :east)
+        subject.right
+        expect(subject.orientation).to eq :south
       end
       it 'south => west' do
-        @robo.place(x, y, :south)
-        @robo.right
-        expect(@robo.orientation).to eq :west
+        subject.place(x, y, :south)
+        subject.right
+        expect(subject.orientation).to eq :west
       end
       it 'west => north' do
-        @robo.place(x, y, :west)
-        @robo.right
-        expect(@robo.orientation).to eq :north
+        subject.place(x, y, :west)
+        subject.right
+        expect(subject.orientation).to eq :north
       end
     end
   end
 
   describe '#report' do
     it 'works' do
-      expect { @robo.report }.not_to raise_error
+      expect { subject.report }.not_to raise_error
     end
   end
 end
