@@ -15,7 +15,7 @@ module ToyRoboSimulator
 
     def self.run(command)
       args   = command.split(' ')
-      action = args[0].gsub("\n","").downcase
+      action = args[0].gsub("\n", '').downcase
       case
       when action == 'exit'
         exit_program
@@ -35,8 +35,8 @@ module ToyRoboSimulator
     private
 
     def self.exit_program
-     puts "\nThank You!\n\n"
-     exit 
+      puts "\nThank You!\n\n"
+      exit
     end
 
     def self.help
@@ -44,4 +44,3 @@ module ToyRoboSimulator
     end
   end
 end
-

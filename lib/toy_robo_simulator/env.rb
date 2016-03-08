@@ -11,8 +11,8 @@ Help = "Available Commands:
 
 Message = "\nWelcome to Toy Robo Simulator!
 #{Help}
-Use PLACE first to start the simulation :)\n 
-" 
+Use PLACE first to start the simulation :)\n
+"
 
 Warning = "
 Unknown command.
