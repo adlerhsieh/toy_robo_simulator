@@ -35,13 +35,13 @@ module ToyRoboSimulator
 
     def left
       return unless placed?
-      @orientation = Orientations[Orientations.index(@orientation) + 1] || :north
+      @orientation = ::ORIENTATIONS[::ORIENTATIONS.index(@orientation) + 1] || :north
       report
     end
 
     def right
       return unless placed?
-      @orientation = Orientations[Orientations.index(@orientation) - 1]
+      @orientation = ::ORIENTATIONS[::ORIENTATIONS.index(@orientation) - 1]
       report
     end
 
@@ -95,7 +95,7 @@ module ToyRoboSimulator
     end
 
     def orientation_valid?(orientation)
-      unless Orientations.include? orientation
+      unless ::ORIENTATIONS.include? orientation
         puts 'orientation should be either NORTH, SOUTH, EAST, or WEST'
         return false
       end

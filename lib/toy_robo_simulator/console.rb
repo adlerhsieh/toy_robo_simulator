@@ -2,7 +2,7 @@ module ToyRoboSimulator
   class Console
     def self.init
       n = 0
-      puts ::Message
+      puts ::MESSAGE
       print "#{format('%02d', n)} > "
       @robo = Robo.new
       command = STDIN.gets
@@ -21,14 +21,14 @@ module ToyRoboSimulator
         exit_program
       when action == 'help'
         help
-      when ::AvailableCommands.include?(action)
+      when ::AVAILABLE_COMMANDS.include?(action)
         begin
           @robo.send(action.to_sym, *args[1..-1])
-        rescue ArgumentError => e
-          puts "PLACE should come with x, y, and orientation.\ne.g. PLACE 1 2 NORTH"
+        rescue ArgumentError
+          tip
         end
       else
-        puts ::Warning
+        puts ::WARNING
       end
     end
 
@@ -40,7 +40,11 @@ module ToyRoboSimulator
     end
 
     def self.help
-      puts Help
+      puts HELP
+    end
+
+    def self.tip
+      puts TIP
     end
   end
 end

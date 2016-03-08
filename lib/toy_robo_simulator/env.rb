@@ -1,21 +1,26 @@
-AvailableCommands = %w(help place move left right report)
+AVAILABLE_COMMANDS = %w(help place move left right report)
 
-Help = "Available Commands:
-- HELP:   Display all available commands
-- PLACE:  Place the robo at a position
+HELP = "Available Commands:
+- PLACE:  Place the robo at a position. Requires x, y, and orientation arguments.
+          e.g. PLACE 2 5 NORTH
 - MOVE:   Move forward
 - LEFT:   Turn left
 - RIGHT:  Turn right
 - REPORT: Report current position and orientation
+- HELP:   Display all available commands
 "
 
-Message = "\nWelcome to Toy Robo Simulator!
-#{Help}
+MESSAGE = "\nWelcome to Toy Robo Simulator!
+#{HELP}
 Use PLACE first to start the simulation :)\n
 "
 
-Warning = "
-Unknown command.
-\n#{Help}\n"
+WARNING = "
+Unknown command. Type HELP if you need it.\n
+"
 
-Orientations = %i(north west south east)
+TIP = "\nWrong Format:
+1. PLACE should take 3 arguments: x, y, and orientation. e.g. PLACE 1 2 NORTH
+2. Other commands take no argument.\n\n"
+
+ORIENTATIONS = %i(north west south east)
