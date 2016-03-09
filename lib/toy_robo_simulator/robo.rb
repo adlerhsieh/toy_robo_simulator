@@ -10,8 +10,7 @@ module ToyRoboSimulator
     end
 
     def place(x, y, orientation)
-      x = x.to_i
-      y = y.to_i
+      x, y = x.to_i, y.to_i
       return unless coordinates_valid?(x, y) && orientation_valid?(orientation.downcase.to_sym)
       @x, @y = x, y
       @orientation = orientation.downcase.to_sym
@@ -35,18 +34,20 @@ module ToyRoboSimulator
 
     def left
       return unless placed?
-      @orientation = ::ORIENTATIONS[::ORIENTATIONS.index(@orientation) + 1] || :north
+      index = ::ORIENTATIONS.index(@orientation) + 1
+      @orientation = ::ORIENTATIONS[index] || :north
       report
     end
 
     def right
       return unless placed?
-      @orientation = ::ORIENTATIONS[::ORIENTATIONS.index(@orientation) - 1]
+      index = ::ORIENTATIONS.index(@orientation) - 1
+      @orientation = ::ORIENTATIONS[index]
       report
     end
 
     def report
-      puts "Robo is now at coordinates (#{@x},#{@y}), facing #{@orientation.to_s.upcase}"
+      puts "Robo is now: (#{@x},#{@y}) facing #{@orientation.to_s.upcase}"
     end
 
     private
@@ -79,7 +80,7 @@ module ToyRoboSimulator
     end
 
     def int?(coordinate)
-      unless coordinate.to_s === coordinate.to_i.to_s
+      unless coordinate.to_s == coordinate.to_i.to_s
         puts 'Coordinate must be an Integer'
         return false
       end
