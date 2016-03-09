@@ -20,16 +20,16 @@ module ToyRoboSimulator
       args   = command.split(' ')
       action = args[0].gsub("\n", '').downcase
       case
+      when ::AVAILABLE_COMMANDS.include?(action)
+        begin
+          @robo.send(action.to_sym, *args[1..-1])
+        rescue ArgumentError => e
+          tip if e.message.include? 'wrong number of arguments'
+        end
       when action == 'exit'
         exit_program
       when action == 'help'
         help
-      when ::AVAILABLE_COMMANDS.include?(action)
-        begin
-          @robo.send(action.to_sym, *args[1..-1])
-        rescue ArgumentError
-          tip
-        end
       else
         puts ::WARNING
       end

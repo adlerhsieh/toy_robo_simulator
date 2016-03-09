@@ -167,9 +167,7 @@ describe ToyRoboSimulator::Robo do
     end
   end
 
-  describe '#report' do
-    it 'works' do
-      expect { subject.report }.not_to raise_error
-    end
+  it '#report' do
+    expect { subject.report }.not_to raise_error
   end
 end
