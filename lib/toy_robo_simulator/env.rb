@@ -1,4 +1,6 @@
-AVAILABLE_COMMANDS = %w(help place move left right report)
+require 'colorize'
+
+AVAILABLE_COMMANDS = %w(place move left right report)
 
 HELP = "Available Commands:
 - PLACE:  Place a robo. Requires x, y, and orientation arguments.
@@ -10,14 +12,11 @@ HELP = "Available Commands:
 - HELP:   Display all available commands
 "
 
-MESSAGE = "\nWelcome to Toy Robo Simulator!
-#{HELP}
-Use PLACE first to start the simulation :)\n
-"
+MESSAGE = "\n#{"Welcome to Toy Robo Simulator!".colorize(:green)}\n\n#{HELP}\nUse PLACE first to start the simulation :)\n\n"
 
-WARNING = 'Unknown command. Type HELP if you need it.'
+WARNING = "Command Not Found. See 'HELP'."
 
-TIP = "Wrong Format:
+TIP = "#{"WARNING".colorize(:red)}
 - PLACE should take 3 arguments: x, y, and orientation. e.g. PLACE 1 2 NORTH
 - Other commands take no argument."
 
