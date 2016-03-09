@@ -2,4 +2,4 @@
 
 require 'toy_robo_simulator'
 
-ToyRoboSimulator::Console.init
+ToyRoboSimulator::Console.new.watch

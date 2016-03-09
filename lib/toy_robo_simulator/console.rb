@@ -1,19 +1,22 @@
 module ToyRoboSimulator
   class Console
-    def self.init
-      n = 0
+    def initialize
       puts ::MESSAGE
-      print "#{format('%02d', n)} > "
+      @n = 0
       @robo = Robo.new
+      print "#{format('%02d', @n)} > "
+    end
+
+    def watch
       command = STDIN.gets
       while command
         run(command)
-        print "#{format('%02d', n += 1)} > "
+        print "#{format('%02d', @n += 1)} > "
         command = STDIN.gets
       end
     end
 
-    def self.run(command)
+    def run(command)
       args   = command.split(' ')
       action = args[0].gsub("\n", '').downcase
       case
@@ -32,18 +35,16 @@ module ToyRoboSimulator
       end
     end
 
-    private
-
-    def self.exit_program
+    def exit_program
       puts "\nThank You!\n\n"
       exit
     end
 
-    def self.help
+    def help
       puts HELP
     end
 
-    def self.tip
+    def tip
       puts TIP
     end
   end
