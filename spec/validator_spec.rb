@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'ostruct'
 
 describe ToyRoboSimulator::Validator do
-  let(:validator) { Class.new{ include ToyRoboSimulator::Validator }.new }
+  let(:validator) { Class.new { include ToyRoboSimulator::Validator }.new }
   before do
     validator.instance_variable_set(:@errors, [])
     validator.instance_variable_set(:@table, OpenStruct.new(x: 5, y: 5))

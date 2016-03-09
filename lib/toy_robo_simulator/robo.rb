@@ -10,14 +10,14 @@ module ToyRoboSimulator
 
     def place(x, y, orientation)
       validate_placement(x, y, orientation)
-      warning and return if @errors.any?
+      warning && return if @errors.any?
       @x, @y = x.to_i, y.to_i
       @orientation = orientation.downcase.to_sym
     end
 
     def move
       validate_movement
-      warning and return if @errors.any?
+      warning && return if @errors.any?
       case orientation
       when :north
         @y += 1
@@ -31,29 +31,29 @@ module ToyRoboSimulator
     end
 
     def left
-      validate_placed
-      warning and return if @errors.any?
+      validate_if_placed
+      warning && return if @errors.any?
       index = ::ORIENTATIONS.index(@orientation) + 1
       @orientation = ::ORIENTATIONS[index] || :north
     end
 
     def right
-      validate_placed
-      warning and return if @errors.any?
+      validate_if_placed
+      warning && return if @errors.any?
       index = ::ORIENTATIONS.index(@orientation) - 1
       @orientation = ::ORIENTATIONS[index]
     end
 
     def report
-      validate_placed
-      warning and return if @errors.any?
+      validate_if_placed
+      warning && return if @errors.any?
       puts "Robo is now: (#{@x},#{@y}) facing #{@orientation.to_s.upcase}"
     end
 
     private
 
     def warning
-      @errors.each {|message| puts message }
+      @errors.each { |message| puts message }
       @errors = []
     end
   end
