@@ -1,4 +1,6 @@
 module ToyRoboSimulator
+  # The console is responsible for initaing a command line interface for 
+  # users to access the program.
   class Console
     def initialize
       puts ::MESSAGE

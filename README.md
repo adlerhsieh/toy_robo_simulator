@@ -1,36 +1,97 @@
-# Toy Robot Simulator
+# Toy Robo Simulator
 
-![](https://travis-ci.org/adlerhsieh/toy_robo_simulator.svg) [![Code Climate](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/badges/gpa.svg)](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator)
+[![](https://travis-ci.org/adlerhsieh/toy_robo_simulator.svg)](https://travis-ci.org/adlerhsieh/toy_robo_simulator) [![Code Climate](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/badges/gpa.svg)](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator) [![Test Coverage](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/badges/coverage.svg)](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/coverage)
+
+Toy Robo Simulator is a command line application that simulates the movement of a toy robot, or robo, on a square table. You have several commands to control the robo including `PLACE`, `MOVE`, `LEFT`, and `RIGHT`. It's like moving a character in a PRG game. Feel free to roam around. 
 
 ## Installation
-
-Run:
 
 ```
 gem install toy_robo_simulator
 ```
 
-## Usage
+Since this is a standalone program, there is no need to install with a `Gemfile`.
 
-## Development Specs
+## Initialize
 
-- [ ] Create a 5x5 tabletop when initated
-- [ ] The (0,0) is the south west corner
-- [ ] The robot cannot move out of range
-- [ ] Available Commands
-  - [ ] PLACE X, Y, F: Place the robot on a specific position with direction
-  - [ ] MOVE: move forward one space
-  - [ ] LEFT: turn left
-  - [ ] RIGHT: turn right
-  - [ ] REPORT: report current position and direction
-- [ ] PLACE should be the first command, otherwise ignored
-- [ ] Allow both CLI input and file input
+```
+robo
+```
+
+You should see a welcome message along with a command line prompt. Ready to move the robots!
+
+## Available Commands
+
+```ruby
+PLACE
+# Place a robo. Requires x, y, and orientation arguments. Arguments are separated by a white space.
+# e.g. PLACE 2 5 NORTH
+
+MOVE
+# Move forward one space. e.g. Facing north will move the robo one toward north.
+
+LEFT
+# Turn left.
+
+RIGHT
+# Turn right.
+
+REPORT
+# Report current position and orientation.
+
+HELP
+# Display all available commands.
+```
+
+The commands are not case-sensative. Either `PLACE`, `Place` or `place` will work. 
+
+However, several rules to follow:
+
+- A robo must be placed on the table before any other commands.
+- The robo cannot be placed out of the table.
+- The robo is not allowed to move out the the table.
+
+## A Complete Example
+
+```
+Welcome to Toy Robo Simulator!
+
+Available Commands:
+- PLACE:  Place a robo. Requires x, y, and orientation arguments.
+          e.g. PLACE 2 5 NORTH
+- MOVE:   Move forward
+- LEFT:   Turn left
+- RIGHT:  Turn right
+- REPORT: Report current position and orientation
+- HELP:   Display all available commands
+Use PLACE first to start the simulation :)
+
+00 > PLACE 2 1 NORTH
+It is placed.
+01 > MOVE
+It moves forward.
+02 > LEFT
+It turns left.
+03 > REPORT
+Robo is now at (2,2) facing WEST
+04 > MOVE
+It moves forward.
+05 > RIGHT
+It turns right
+06 > MOVE
+It moves forward.
+07 > REPORT
+Robo is now at (1,3) facing NORTH
+08 > exit
+
+Thank You!
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/toy_robo_simulator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/adlerhsieh/toy_robo_simulator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
- 
+
