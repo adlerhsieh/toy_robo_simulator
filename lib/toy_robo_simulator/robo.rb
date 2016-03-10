@@ -16,6 +16,7 @@ module ToyRoboSimulator
     end
 
     def move
+      validate_if_placed
       validate_movement
       warning && return if @errors.any?
       case orientation
@@ -56,5 +57,6 @@ module ToyRoboSimulator
       @errors.each { |message| puts message }
       @errors = []
     end
+
   end
 end
