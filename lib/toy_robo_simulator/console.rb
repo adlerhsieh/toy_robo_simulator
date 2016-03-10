@@ -21,11 +21,7 @@ module ToyRoboSimulator
       action = args[0].gsub("\n", '').downcase
       case
       when ::AVAILABLE_COMMANDS.include?(action)
-        begin
-          @robo.send(action.to_sym, *args[1..-1])
-        rescue ArgumentError => e
-          tip if e.message.include? 'wrong number of arguments'
-        end
+        process(action, args)
       when action == 'exit'
         exit_program
       when action == 'help'
@@ -35,6 +31,20 @@ module ToyRoboSimulator
       end
     end
 
+    private
+
+    def process(action, args)
+      begin
+        @robo.send(action.to_sym, *args[1..-1])
+      rescue ArgumentError => e
+        tip if e.message.include? 'wrong number of arguments'
+      end
+    end
+
+    def tip
+      puts TIP
+    end
+
     def exit_program
       puts "\nThank You!\n\n"
       exit
@@ -42,10 +52,6 @@ module ToyRoboSimulator
 
     def help
       puts HELP
-    end
-
-    def tip
-      puts TIP
     end
   end
 end
