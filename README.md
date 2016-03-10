@@ -1,5 +1,7 @@
 # Toy Robot Simulator
 
+![](https://travis-ci.org/adlerhsieh/toy_robo_simulator.svg) [![Code Climate](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/badges/gpa.svg)](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator)
+
 ## Installation
 
 Run:

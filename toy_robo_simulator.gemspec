@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A toy robot simulator}
   spec.description   = %q{A CLI that simulates the movement of a robot on a 5x5 table}
-  spec.homepage      = "http://github.com/adlerhsieh/toy_rubo_simulator"
+  spec.homepage      = "http://github.com/adlerhsieh/toy_robo_simulator"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
