@@ -77,10 +77,34 @@ describe ToyRoboSimulator::Robo do
             expect(subject.orientation).to eq orientation
           end
         end
+        context 'and the robo facing west' do
+          let(:orientation) { :west }
+          before do
+            subject.place(x, y, orientation)
+            subject.move
+          end
+          it 'moves robo 1 space towards west' do
+            expect(subject.x).to eq(x - 1)
+            expect(subject.y).to eq(y)
+            expect(subject.orientation).to eq orientation
+          end
+        end
+        context 'and the robo facing south' do
+          let(:orientation) { :south }
+          before do
+            subject.place(x, y, orientation)
+            subject.move
+          end
+          it 'moves robo 1 space towards south' do
+            expect(subject.x).to eq(x)
+            expect(subject.y).to eq(y - 1)
+            expect(subject.orientation).to eq orientation
+          end
+        end
         context 'and the robo facing east' do
           let(:orientation) { :east }
           before do
-            subject.place(x, y, :east)
+            subject.place(x, y, orientation)
             subject.move
           end
           it 'moves robo 1 space towards east' do
@@ -167,7 +191,15 @@ describe ToyRoboSimulator::Robo do
     end
   end
 
-  it '#report' do
-    expect { subject.report }.not_to raise_error
+  describe '#report' do
+    let(:x){ 2 }
+    let(:y){ 2 }
+    it 'before #place' do
+      expect { subject.report }.not_to raise_error
+    end
+    it 'after #place' do
+      subject.place(x, y, :north)
+      expect { subject.report }.not_to raise_error
+    end
   end
 end

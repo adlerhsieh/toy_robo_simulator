@@ -2,6 +2,7 @@ module ToyRoboSimulator
   # The console is responsible for initaing a command line interface for 
   # users to access the program.
   class Console
+    attr_accessor :robo
     def initialize
       puts ::MESSAGE
       @n = 0
@@ -9,18 +10,18 @@ module ToyRoboSimulator
       print "#{format('%02d', @n)} > "
     end
 
-    def watch
-      command = STDIN.gets
+    def watch(stdin=$stdin)
+      command = $stdin.gets.chomp
       while command
         run(command)
         print "#{format('%02d', @n += 1)} > "
-        command = STDIN.gets
+        command = $stdin.gets.chomp
       end
     end
 
     def run(command)
       args   = command.split(' ')
-      action = args[0].gsub("\n", '').downcase
+      action = args[0].chomp.downcase
       case
       when ::AVAILABLE_COMMANDS.include?(action)
         process(action, args)
