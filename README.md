@@ -43,7 +43,7 @@ HELP
 # Display all available commands.
 ```
 
-The commands are not case-sensative. Either `PLACE`, `Place` or `place` will work. 
+The commands are not case-sensitive. Either `PLACE`, `Place` or `place` will work. 
 
 However, several rules to follow:
 
