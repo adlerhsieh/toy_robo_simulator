@@ -1,5 +1,5 @@
 module ToyRoboSimulator
-  # The console is responsible for initaing a command line interface for 
+  # The console is responsible for initaing a command line interface for
   # users to access the program.
   class Console
     attr_accessor :robo
@@ -10,7 +10,7 @@ module ToyRoboSimulator
       print "#{format('%02d', @n)} > "
     end
 
-    def watch(stdin=$stdin)
+    def watch(_stdin = $stdin)
       command = $stdin.gets.chomp
       while command
         run(command)
@@ -37,11 +37,9 @@ module ToyRoboSimulator
     private
 
     def process(action, args)
-      begin
-        @robo.send(action.to_sym, *args[1..-1])
-      rescue ArgumentError => e
-        tip if e.message.include? 'wrong number of arguments'
-      end
+      @robo.send(action.to_sym, *args[1..-1])
+    rescue ArgumentError => e
+      tip if e.message.include? 'wrong number of arguments'
     end
 
     def tip

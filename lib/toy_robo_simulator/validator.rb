@@ -18,9 +18,9 @@ module ToyRoboSimulator
 
     def at_table_edge?
       (@orientation == :north && @y == @table.y) ||
-      (@orientation == :east  && @x == @table.x) ||
-      (@orientation == :south && @y == 0)        ||
-      (@orientation == :west  && @x == 0)
+        (@orientation == :east  && @x == @table.x) ||
+        (@orientation == :south && @y == 0)        ||
+        (@orientation == :west  && @x == 0)
     end
 
     private

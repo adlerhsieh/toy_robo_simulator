@@ -11,7 +11,8 @@ module ToyRoboSimulator
     def place(x, y, orientation)
       validate_placement(x, y, orientation)
       warning && return if @errors.any?
-      @x, @y = x.to_i, y.to_i
+      @x = x.to_i
+      @y = y.to_i
       @orientation = orientation.downcase.to_sym
       puts 'It is placed.'
     end
@@ -57,6 +58,5 @@ module ToyRoboSimulator
       @errors.each { |message| puts message }
       @errors = []
     end
-
   end
 end

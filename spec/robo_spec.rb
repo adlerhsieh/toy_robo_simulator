@@ -192,8 +192,8 @@ describe ToyRoboSimulator::Robo do
   end
 
   describe '#report' do
-    let(:x){ 2 }
-    let(:y){ 2 }
+    let(:x) { 2 }
+    let(:y) { 2 }
     it 'before #place' do
       expect { subject.report }.not_to raise_error
     end
