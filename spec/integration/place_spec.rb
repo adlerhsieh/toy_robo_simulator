@@ -46,5 +46,13 @@ describe 'Command Line' do
         expect(@robo.orientation).to eq :north
       end
     end
+    context 'with 3 args separated by commas' do
+      it 'is valid' do
+        @console.run('place 1,2, north')
+        expect(@robo.x).to eq 1
+        expect(@robo.y).to eq 2
+        expect(@robo.orientation).to eq :north
+      end
+    end
   end
 end

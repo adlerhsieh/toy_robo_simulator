@@ -21,8 +21,18 @@ module ToyRoboSimulator
       end
     end
 
+    # Analyzes if command is available, and process the command.
+    # The command should be separated either by white spaces or commas.
+    # However, only commands in AVAILABLE_COMMANDS are allowed.
+    #
+    # ```
+    # console = ToyRoboSimulator::Console.new
+    # console.run('hello world') # => 'unknown command.'
+    # console.run('foo, bar') # => 'unknown command.'
+    # console.run('exit') # => 'Thank You!'
+    # ```
     def run(command)
-      args = command.split(' ').map(&:chomp).map(&:downcase)
+      args = to_args(command)
       if AVAILABLE_COMMANDS.include?(args[0])
         process(args[0], args[1..-1])
       else
@@ -41,6 +51,10 @@ module ToyRoboSimulator
       end
     rescue ArgumentError => e
       tip if e.message.include? 'wrong number of arguments'
+    end
+
+    def to_args(command)
+      command.split(' ').map { |n| n.split(',') }.flatten.map(&:chomp).map(&:downcase)
     end
 
     def tip
