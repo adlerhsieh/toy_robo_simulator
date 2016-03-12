@@ -1,10 +1,12 @@
 module ToyRoboSimulator
-  # The console is responsible for initaing a command line interface for
+  # The console is responsible for initaing an interactive command line interface for
   # users to access the program.
   class Console
     attr_accessor :robo
+    # Available uner-input commands
     AVAILABLE_COMMANDS = %w(place move left right report help exit).freeze
 
+    # Initializes a CLI that includes a Robo instance.
     def initialize
       puts MESSAGE
       @n = 0
@@ -12,6 +14,7 @@ module ToyRoboSimulator
       print "#{format('%02d', @n)} > "
     end
 
+    # Starts watching for user input.
     def watch
       command = STDIN.gets.chomp
       while command
@@ -42,6 +45,7 @@ module ToyRoboSimulator
 
     private
 
+    # Directly sends the command with arguments to the Robo instance.
     def process(action, args)
       case action
       when 'exit' then exit_program

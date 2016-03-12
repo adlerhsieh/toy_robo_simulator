@@ -12,7 +12,6 @@ require_relative 'toy_robo_simulator/console'
 # - Robo: A robot simulating the movement on a table.
 # - Validator: Validating the robo's actions and their prerequisities.
 # - Others
-#
 module ToyRoboSimulator
   ORIENTATIONS = %i(north west south east).freeze
 end

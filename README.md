@@ -2,7 +2,7 @@
 
 [![](https://travis-ci.org/adlerhsieh/toy_robo_simulator.svg)](https://travis-ci.org/adlerhsieh/toy_robo_simulator) [![Code Climate](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/badges/gpa.svg)](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator) [![Test Coverage](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/badges/coverage.svg)](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/coverage)
 
-Toy Robo Simulator is a command line application that simulates the movement of a toy robot, or robo, on a square table. You have several commands to control the robo including `PLACE`, `MOVE`, `LEFT`, and `RIGHT`. It's like moving a character in a PRG game. Feel free to roam around. 
+Toy Robo Simulator is a command line application that simulates the movement of a toy robot, or robo, on a square table. Entering an interactive console, you have several commands to control the robo including `PLACE`, `MOVE`, `LEFT`, and `RIGHT`. It's like moving a character in a PRG game. Feel free to roam around. 
 
 ## Installation
 
@@ -28,7 +28,7 @@ PLACE
 # e.g. PLACE 2 5 NORTH
 
 MOVE
-# Move forward one space. e.g. Facing north will move the robo one toward north.
+# Move forward one space. e.g. Facing north will move the robo one unit toward north.
 
 LEFT
 # Turn left.
@@ -86,6 +86,10 @@ Robo is now at (1,3) facing NORTH
 
 Thank You!
 ```
+
+## Development Documentation
+
+Detailed documentations of every class, module, and method are on [RubyDoc](http://www.rubydoc.info/gems/toy_robo_simulator/1.0.0).
 
 ## Contributing
 

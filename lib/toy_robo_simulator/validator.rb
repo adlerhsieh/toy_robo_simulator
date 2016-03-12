@@ -1,5 +1,9 @@
 module ToyRoboSimulator
+  # Validator serves to validate operations performed by a Robo. It is a standalone module but
+  # takes arguments and attributes from a Robo.
   module Validator
+    # Ensures input values of Robo#place action is valid in type and range.
+    # Returns false if it is not valid.
     def validate_placement(x, y, orientation)
       @errors << 'X must be a number' unless int?(x)
       @errors << 'Y must be a number' unless int?(y)
@@ -8,10 +12,14 @@ module ToyRoboSimulator
       @errors << 'Orientation should be either NORTH, SOUTH, EAST, or WEST' unless orientation_valid?(orientation)
     end
 
+    # Prevents Robo#move from moving out of the table.
+    # Returns false if the Robo is at the edge of the table.
     def validate_movement
       @errors << 'The Robo is at edge. No further move is allowed.' if edge?
     end
 
+    # Ensures the Robo is placed before any other actions are performed.
+    # Returns false if no attributes are set for the Robo.
     def validate_if_placed
       @errors << 'The Robo is not placed yet. Use PLACE command first.' unless @x && @y && @orientation
     end
