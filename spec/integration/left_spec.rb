@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Command Line' do
   subject { ToyRoboSimulator::Console }
-  before { stub_console_output } 
+  before { stub_console_output }
   describe 'runs LEFT' do
     before do
       @console = subject.new

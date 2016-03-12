@@ -9,18 +9,11 @@ module ToyRoboSimulator
     end
 
     def validate_movement
-      @errors << 'The Robo is at edge. No further move is allowed.' if at_table_edge?
+      @errors << 'The Robo is at edge. No further move is allowed.' if edge?
     end
 
     def validate_if_placed
       @errors << 'The Robo is not placed yet. Use PLACE command first.' unless @x && @y && @orientation
-    end
-
-    def at_table_edge?
-      (@orientation == :north && @y == @table.y) ||
-        (@orientation == :east  && @x == @table.x) ||
-        (@orientation == :south && @y == 0)        ||
-        (@orientation == :west  && @x == 0)
     end
 
     private
@@ -34,7 +27,20 @@ module ToyRoboSimulator
     end
 
     def orientation_valid?(orientation)
-      ::ORIENTATIONS.include? orientation.downcase.to_sym
+      ORIENTATIONS.include? orientation.downcase.to_sym
+    end
+
+    def edge?
+      case @orientation
+      when :north
+        @y == @table.y
+      when :east
+        @x == @table.x
+      when :south
+        @y == 0
+      when :west
+        @x == 0
+      end
     end
   end
 end

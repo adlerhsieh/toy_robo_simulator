@@ -21,28 +21,21 @@ module ToyRoboSimulator
       validate_if_placed
       validate_movement
       warning && return if @errors.any?
-      case orientation
-      when :north then @y += 1
-      when :east  then @x += 1
-      when :south then @y -= 1
-      when :west  then @x -= 1
-      end
+      move_forward(1)
       puts 'It moves forward.'
     end
 
     def left
       validate_if_placed
       warning && return if @errors.any?
-      index = ::ORIENTATIONS.index(@orientation) + 1
-      @orientation = ::ORIENTATIONS[index] || :north
+      turn(:left)
       puts 'It turns left.'
     end
 
     def right
       validate_if_placed
       warning && return if @errors.any?
-      index = ::ORIENTATIONS.index(@orientation) - 1
-      @orientation = ::ORIENTATIONS[index]
+      turn(:right)
       puts 'It turns right'
     end
 
@@ -57,6 +50,21 @@ module ToyRoboSimulator
     def warning
       @errors.each { |message| puts message }
       @errors = []
+    end
+
+    def turn(direction)
+      i = direction == :left ? 1 : -1
+      index = ORIENTATIONS.index(@orientation) + i
+      @orientation = ORIENTATIONS[index] || :north
+    end
+
+    def move_forward(unit)
+      case @orientation
+      when :north then @y += unit
+      when :east  then @x += unit
+      when :south then @y -= unit
+      when :west  then @x -= unit
+      end
     end
   end
 end

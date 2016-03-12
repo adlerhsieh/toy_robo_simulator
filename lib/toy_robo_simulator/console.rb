@@ -3,41 +3,42 @@ module ToyRoboSimulator
   # users to access the program.
   class Console
     attr_accessor :robo
+    AVAILABLE_COMMANDS = %w(place move left right report help exit).freeze
+
     def initialize
-      puts ::MESSAGE
+      puts MESSAGE
       @n = 0
       @robo = Robo.new
       print "#{format('%02d', @n)} > "
     end
 
-    def watch(_stdin = $stdin)
-      command = $stdin.gets.chomp
+    def watch
+      command = STDIN.gets.chomp
       while command
         run(command)
         print "#{format('%02d', @n += 1)} > "
-        command = $stdin.gets.chomp
+        command = STDIN.gets.chomp
       end
     end
 
     def run(command)
-      args   = command.split(' ')
-      action = args[0].chomp.downcase
-      case
-      when ::AVAILABLE_COMMANDS.include?(action)
-        process(action, args)
-      when action == 'exit'
-        exit_program
-      when action == 'help'
-        help
+      args = command.split(' ').map(&:chomp).map(&:downcase)
+      if AVAILABLE_COMMANDS.include?(args[0])
+        process(args[0], args[1..-1])
       else
-        puts ::WARNING
+        puts WARNING
       end
     end
 
     private
 
     def process(action, args)
-      @robo.send(action.to_sym, *args[1..-1])
+      case action
+      when 'exit' then exit_program
+      when 'help' then help
+      else
+        @robo.send(action.to_sym, *args)
+      end
     rescue ArgumentError => e
       tip if e.message.include? 'wrong number of arguments'
     end
