@@ -3,10 +3,7 @@ require 'ostruct'
 
 describe ToyRoboSimulator::Console do
   subject { ToyRoboSimulator::Console }
-  before do
-    allow_any_instance_of(subject).to receive(:puts)
-    allow_any_instance_of(subject).to receive(:print)
-  end
+  before { stub_console_output }
   it '#run' do
     subject.instance_variable_set(:@robo, OpenStruct.new(place: nil))
     expect { subject.new.run('exit') }.to raise_error SystemExit

@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe ToyRoboSimulator::Robo do
   subject { ToyRoboSimulator::Robo.new }
-  before do
-    allow(subject).to receive(:puts)
-    allow(subject).to receive(:print)
-  end
+  before { stub_console_output }
 
   describe '#place' do
     context 'coordinates out of range' do
@@ -71,7 +68,7 @@ describe ToyRoboSimulator::Robo do
             subject.place(x, y, orientation)
             subject.move
           end
-          it 'moves robo 1 space towards north' do
+          it 'moves robo 1 unit towards north' do
             expect(subject.x).to eq(x)
             expect(subject.y).to eq(y + 1)
             expect(subject.orientation).to eq orientation
@@ -83,7 +80,7 @@ describe ToyRoboSimulator::Robo do
             subject.place(x, y, orientation)
             subject.move
           end
-          it 'moves robo 1 space towards west' do
+          it 'moves robo 1 unit towards west' do
             expect(subject.x).to eq(x - 1)
             expect(subject.y).to eq(y)
             expect(subject.orientation).to eq orientation
@@ -95,7 +92,7 @@ describe ToyRoboSimulator::Robo do
             subject.place(x, y, orientation)
             subject.move
           end
-          it 'moves robo 1 space towards south' do
+          it 'moves robo 1 unit towards south' do
             expect(subject.x).to eq(x)
             expect(subject.y).to eq(y - 1)
             expect(subject.orientation).to eq orientation
@@ -107,7 +104,7 @@ describe ToyRoboSimulator::Robo do
             subject.place(x, y, orientation)
             subject.move
           end
-          it 'moves robo 1 space towards east' do
+          it 'moves robo 1 unit towards east' do
             expect(subject.x).to eq(x + 1)
             expect(subject.y).to eq(y)
             expect(subject.orientation).to eq orientation
