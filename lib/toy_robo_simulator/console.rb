@@ -3,7 +3,7 @@ module ToyRoboSimulator
   # users to access the program.
   class Console
     attr_accessor :robo
-    # Available uner-input commands
+    # Available user-input commands
     AVAILABLE_COMMANDS = %w(place move left right report help exit).freeze
 
     # Initializes a CLI that includes a Robo instance.
