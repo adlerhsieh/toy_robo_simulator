@@ -1,6 +1,6 @@
 # Toy Robo Simulator
 
-[![](https://travis-ci.org/adlerhsieh/toy_robo_simulator.svg)](https://travis-ci.org/adlerhsieh/toy_robo_simulator) [![Code Climate](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/badges/gpa.svg)](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator) [![Test Coverage](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/badges/coverage.svg)](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/coverage)
+[![Gem Version](https://badge.fury.io/rb/toy_robo_simulator.svg)](https://rubygems.org/gems/toy_robo_simulator) [![](https://travis-ci.org/adlerhsieh/toy_robo_simulator.svg)](https://travis-ci.org/adlerhsieh/toy_robo_simulator) [![Code Climate](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/badges/gpa.svg)](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator) [![Test Coverage](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/badges/coverage.svg)](https://codeclimate.com/github/adlerhsieh/toy_robo_simulator/coverage)
 
 Toy Robo Simulator is a command line application that simulates the movement of a toy robot, or robo, on a square table. Entering an interactive console, you have several commands to control the robo including `PLACE`, `MOVE`, `LEFT`, and `RIGHT`. It's like moving a character in a PRG game. Feel free to roam around. 
 
