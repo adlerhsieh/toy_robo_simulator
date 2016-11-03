@@ -12,7 +12,6 @@ module ToyRoboSimulator
     def initialize
       puts MESSAGE
       @robo = Robo.new
-      # print "#{format('%02d', @n)} > "
     end
 
     # Starts watching for user input.
