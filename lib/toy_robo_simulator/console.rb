@@ -1,3 +1,5 @@
+require 'readline'
+
 module ToyRoboSimulator
   # The console is responsible for initaing an interactive command line interface for
   # users to access the program.
@@ -9,18 +11,16 @@ module ToyRoboSimulator
     # Initializes a CLI that includes a Robo instance.
     def initialize
       puts MESSAGE
-      @n = 0
       @robo = Robo.new
-      print "#{format('%02d', @n)} > "
+      # print "#{format('%02d', @n)} > "
     end
 
     # Starts watching for user input.
     def watch
-      command = STDIN.gets.chomp
-      while command
-        run(command)
-        print "#{format('%02d', @n += 1)} > "
-        command = STDIN.gets.chomp
+      n = 0
+      while cmd = Readline.readline("#{format('%02d', n)}> ", true)
+        run(cmd)
+        n += 1
       end
     end
 
