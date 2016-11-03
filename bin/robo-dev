@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require 'toy_robo_simulator'
+
+ToyRoboSimulator::Console.new.watch
+
