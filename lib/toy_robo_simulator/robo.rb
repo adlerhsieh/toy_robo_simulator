@@ -1,6 +1,7 @@
 module ToyRoboSimulator
-  # Rubo is the character of this program. It serves to simulates the movement of a robot on a table.
-  # The available actions are place, move, left, right, and report. Each action is validated before execution
+  # Robo is the character of this program. It serves to simulate the movement of a robot on a table.
+  # The available actions are place, move, left, right, and report.
+  # Each action is validated before execution
   # and will respond with the result.
   class Robo
     include Validator

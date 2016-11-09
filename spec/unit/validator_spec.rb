@@ -4,7 +4,7 @@ require 'ostruct'
 describe ToyRoboSimulator::Validator do
   subject { Class.new { include ToyRoboSimulator::Validator }.new }
   let(:errors) { subject.instance_variable_get(:@errors) }
-  
+
   def set(key, value)
     subject.instance_variable_set(key.to_sym, value)
   end
@@ -32,7 +32,7 @@ describe ToyRoboSimulator::Validator do
       expect(errors).not_to be_empty
       expect(errors).to include 'X must be a number'
       expect(errors).to include 'Y must be a number'
-      expect(errors).to include 'Orientation should be either NORTH, SOUTH, EAST, or WEST'
+      expect(errors).to include 'It can only face NORTH, SOUTH, EAST, or WEST'
     end
     it 'out of range' do
       place(8, 10, :north)
