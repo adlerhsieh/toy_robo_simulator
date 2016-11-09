@@ -2,3 +2,7 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - '*.gemspec'
+  DisplayCopNames: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
