@@ -47,30 +47,24 @@ module ToyRoboSimulator
     # Directly sends the command with arguments to the Robo instance.
     def process(action, args)
       case action
-      when 'exit' then exit_program
-      when 'help' then help
+      when 'exit'
+        exit_program
+      when 'help'
+        puts HELP
       else
-        @robo.send(action.to_sym, *args)
+        robo.send(action.to_sym, *args)
       end
     rescue ArgumentError => e
-      tip if e.message.include? 'wrong number of arguments'
+      puts TIP if e.message.include? 'wrong number of arguments'
     end
 
     def to_args(command)
       command.split(' ').map { |n| n.split(',') }.flatten.map(&:chomp).map(&:downcase)
     end
 
-    def tip
-      puts TIP
-    end
-
     def exit_program
       puts "\nThank You!\n\n"
       exit
-    end
-
-    def help
-      puts HELP
     end
   end
 end

@@ -3,7 +3,7 @@ module ToyRoboSimulator
   # takes arguments and attributes from a Robo.
   module Validator
     # Ensures input values of Robo#place action is valid in type and range.
-    # Returns false if it is not valid.
+    # Returns false if it is not valid, otherwise returns true.
     def valid_placement?
       @errors = []
       @errors << 'X must be a number' unless int?(@x)
@@ -22,7 +22,7 @@ module ToyRoboSimulator
     end
 
     # Prevents Robo#move from moving out of the table.
-    # Returns false if the Robo is at the edge of the table.
+    # Returns false if the Robo is at the edge of the table, otherwise returns true.
     def moveable?
       if edge?
         puts 'The Robo is at edge. No further move is allowed.' 
@@ -32,12 +32,13 @@ module ToyRoboSimulator
     end
 
     # Ensures the Robo is placed before any other actions are performed.
-    # Returns false if no attributes are set for the Robo.
+    # Returns false if no attributes are set for the Robo, otherwise returns true.
     def placed?
       if @x && @y && @orientation
         true
       else
         puts 'The Robo is not placed yet. Use PLACE command first.' 
+        false
       end
     end
 
