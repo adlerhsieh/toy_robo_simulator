@@ -31,11 +31,9 @@ module ToyRoboSimulator
     # robo.y # => nil
     # ```
     def place(x, y, orientation)
-      validate_placement(x, y, orientation)
-      warning && return if @errors.any?
-      @x = x.to_i
-      @y = y.to_i
+      @x, @y = x, y
       @orientation = orientation.downcase.to_sym
+      return unless valid_placement?
       puts 'It is placed.'
     end
 
@@ -57,9 +55,7 @@ module ToyRoboSimulator
     # robo.x # => 5
     # ```
     def move
-      validate_if_placed
-      validate_movement
-      warning && return if @errors.any?
+      return unless placed? && moveable?
       move_forward(1)
       puts 'It moves forward.'
     end
@@ -77,16 +73,14 @@ module ToyRoboSimulator
     # robo.orientation # => :north
     # ```
     def left
-      validate_if_placed
-      warning && return if @errors.any?
+      return unless placed?
       turn(:left)
       puts 'It turns left.'
     end
 
     # Turns right. See `#left`.
     def right
-      validate_if_placed
-      warning && return if @errors.any?
+      return unless placed?
       turn(:right)
       puts 'It turns right'
     end
@@ -102,8 +96,7 @@ module ToyRoboSimulator
     # robo.report # => 'Robo is now at (3,3) facing EAST'
     # ```
     def report
-      validate_if_placed
-      warning && return if @errors.any?
+      return unless placed?
       puts "Robo is now at (#{@x},#{@y}) facing #{@orientation.to_s.upcase}"
     end
 
@@ -115,8 +108,8 @@ module ToyRoboSimulator
     end
 
     def turn(direction)
-      i = direction == :left ? 1 : -1
-      index = ORIENTATIONS.index(@orientation) + i
+      i            = direction == :left ? 1 : -1
+      index        = ORIENTATIONS.index(@orientation) + i
       @orientation = ORIENTATIONS[index] || :north
     end
 

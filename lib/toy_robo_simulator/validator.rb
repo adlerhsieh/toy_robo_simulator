@@ -4,24 +4,41 @@ module ToyRoboSimulator
   module Validator
     # Ensures input values of Robo#place action is valid in type and range.
     # Returns false if it is not valid.
-    def validate_placement(x, y, orientation)
-      @errors << 'X must be a number' unless int?(x)
-      @errors << 'Y must be a number' unless int?(y)
-      @errors << "X must be between 0 and #{@table.x}" unless in_range?(x, @table.x)
-      @errors << "Y must be between 0 and #{@table.y}" unless in_range?(y, @table.y)
-      @errors << 'Orientation should be either NORTH, SOUTH, EAST, or WEST' unless orientation_valid?(orientation)
+    def valid_placement?
+      @errors = []
+      @errors << 'X must be a number' unless int?(@x)
+      @errors << 'Y must be a number' unless int?(@y)
+      @errors << "X must be between 0 and #{@table.x}" unless in_range?(@x, @table.x)
+      @errors << "Y must be between 0 and #{@table.y}" unless in_range?(@y, @table.y)
+      @errors << 'Orientation should be either NORTH, SOUTH, EAST, or WEST' unless orientation_valid?(@orientation)
+      if @errors.any?
+        @errors.each { |message| puts message }
+        @x, @y, @orientation = nil, nil, nil
+        false
+      else
+        @x, @y = @x.to_i, @y.to_i
+        true
+      end
     end
 
     # Prevents Robo#move from moving out of the table.
     # Returns false if the Robo is at the edge of the table.
-    def validate_movement
-      @errors << 'The Robo is at edge. No further move is allowed.' if edge?
+    def moveable?
+      if edge?
+        puts 'The Robo is at edge. No further move is allowed.' 
+      else
+        true
+      end
     end
 
     # Ensures the Robo is placed before any other actions are performed.
     # Returns false if no attributes are set for the Robo.
-    def validate_if_placed
-      @errors << 'The Robo is not placed yet. Use PLACE command first.' unless @x && @y && @orientation
+    def placed?
+      if @x && @y && @orientation
+        true
+      else
+        puts 'The Robo is not placed yet. Use PLACE command first.' 
+      end
     end
 
     private
